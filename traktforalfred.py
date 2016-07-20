@@ -38,7 +38,19 @@ def main(wf):
     if action == 'user':
         user = traktapi.user()
         wf.add_item(user['user']['username'], u'Username')
-        wf.add_item(user['user']['name'], u'Name')
+        if user['user']['name']:
+            wf.add_item(user['user']['name'], u'Name') 
+        wf.add_item(str(user['user']['private']), u'Private') 
+        wf.add_item(str(user['user']['vip']), u'VIP') 
+        wf.add_item(user['user']['joined_at'], u'Joined') # FIXME: convert to human time
+        if user['user']['location']:
+            wf.add_item(user['user']['location'], u'Location')
+        if user['user']['about']:
+            wf.add_item(user['user']['about'], u'About') 
+        if user['user']['gender']:
+            wf.add_item(user['user']['gender'], u'Gender') 
+        wf.add_item(str(user['user']['age']), u'Age') 
+        #wf.add_item(user['user']['images'], u'Images') # FIXME: Add IMG support
 
     wf.send_feedback()
 
