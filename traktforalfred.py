@@ -52,6 +52,12 @@ def main(wf):
         wf.add_item(str(user['user']['age']), u'Age') 
         #wf.add_item(user['user']['images'], u'Images') # FIXME: Add IMG support
 
+    if action == 'calendar':
+        calendar = traktapi.calendar()
+
+        if calendar:
+            wf.add_item(u'No Upcoming Events', u'No Upcoming events found')
+
     wf.send_feedback()
 
 
