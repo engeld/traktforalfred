@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # encoding: utf-8
 
+import time
 from collections import defaultdict
 from trakt import Trakt
 
@@ -30,7 +31,8 @@ class TraktAPI():
         Trakt.on('oauth.token_refreshed', self.__on_token_refreshed)
 
         # set base url
-        Trakt.base_url = 'https://api-v2launch.trakt.tv'
+        #Trakt.base_url = 'https://api-v2launch.trakt.tv'
+        Trakt.base_url = 'https://api.trakt.tv'
 
         # set app defaults
         Trakt.configuration.defaults.app(
@@ -80,6 +82,7 @@ class TraktAPI():
             with Trakt.configuration.http(retry=True):
                 result = Trakt['users/settings'].get()
                 return result
+
 
     def checkauth(self):
         try:
