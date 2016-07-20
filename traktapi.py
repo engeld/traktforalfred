@@ -83,6 +83,13 @@ class TraktAPI():
                 result = Trakt['users/settings'].get()
                 return result
 
+    def calendar(self):
+        with Trakt.configuration.oauth.from_response(self.authorization, refresh=True):
+            with Trakt.configuration.http(retry=True):
+                #result = Trakt['calendars/my/shows/' + time.strftime("%Y-%m-%d") + '/7'].get()
+                result = Trakt['calendars/my/shows/2016-07-30/30'].get()
+                return result
+
 
     def checkauth(self):
         try:
